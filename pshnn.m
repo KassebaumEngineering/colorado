@@ -2,7 +2,7 @@
 % Matlab Script File - pshnn.m
 % PSHNN test on the Colorado Data Set
 %
-% %Id$
+% $Id: pshnn.m,v 1.2 1997/09/27 18:59:21 jak Exp $
 %
 % ****************************************
 
@@ -75,8 +75,11 @@ TP = [disp_freq max_epoch err_goal lr lr_inc lr_dec err_ratio];
 % --------------------------------
 % History:
 % $Log: pshnn.m,v $
-% Revision 1.1  1997/09/27 18:57:14  jak
-% Initial revision
+% Revision 1.2  1997/09/27 18:59:21  jak
+% Fixed the Id - oops. -jak
+%
+% Revision 1.1.1.1  1997/09/27 18:57:14  jak
+% First commit of the colorado data set in matlab. -jak
 %
 %
 
