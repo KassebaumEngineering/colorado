@@ -1,8 +1,8 @@
 % ****************************************
-% Matlab Script File - pshnn.m
+% Matlab Script File - colotest.m
 % PSHNN test on the Colorado Data Set
 %
-% $Id: pshnn.m,v 1.5 1997/09/30 00:00:23 jak Exp $
+% $Id: colotest.m,v 1.1 1997/09/30 05:26:04 jak Exp $
 %
 % ****************************************
 
@@ -12,17 +12,8 @@
 load -force colo_trn.mat;
 
 % ---------------------------------------
-% Network Architecture Definitions
+% Choose Basic Algorithm
 %
-[isamples, channels] = size( colorado_train_input );
-[osamples, classes ] = size( colorado_train_output );
-if isamples == osamples 
-	samples = isamples;
-else
-    error('%dx%d -> %dx%d : Unequal amounts of Training input and output data!',\
-        isamples, channels, osamples, classes);
-end
-
 choice = menu("Which Learning Method would you like to use?",
               "2-Layer Perceptron with Linear Outputs - Adaptive BackPropagation Training",
               "Random Perceptron Enhanced Functional Link Network - LMS Training"
@@ -44,27 +35,17 @@ if choice == 1 		% Adaptive BackProp
 	endwhile
 
 	% ---------------------------------------
-	% Call backprop routine.
+	% Generate PSHNN Network
 	%
-	% set training parameters
-	disp_freq = 10;
-	max_epoch = 50;
-	err_goal = 0.02;
-	lr = 0.01;
-	lr_inc = 1.05;
-	lr_dec = 0.7;
-	err_ratio = 1.04;
-	
-	TP = [disp_freq max_epoch err_goal lr lr_inc lr_dec err_ratio];
-	[W1,B1,W2,B2] = net_init(colorado_train_input, colorado_train_output, hidden_units);
-	[W1,B1,W2,B2,epoch,TR] = backprop(colorado_train_input, colorado_train_output, hidden_units, W1, B1, W2, B2, TP);
+	[W1, B1, W2, B2 ] = pshnn_bp(colorado_train_input, colorado_train_output, hidden_units);
 
-	% ---------------------------------------
-	% Calculate Net Output
+    % ---------------------------------------
+	% Get Output from PSHNN Network
 	%
-	Y = purelin(W2 * tansig( W1 * colorado_train_input', B1),  B2);
+    [Yc, Y] = use_pshnn_bp(colorado_train_input, W1, B1, W2, B2 );
 
 else if choice == 2		% Functional Link w/Random Perceptron Enhanced Nodes.
+
 	% ---------------------------------------
 	% Choose the number of enhancement nodes
 	%
@@ -78,29 +59,19 @@ else if choice == 2		% Functional Link w/Random Perceptron Enhanced Nodes.
 		end
 	endwhile
 
-    [W1, B1, W2 ] = chen_fln(colorado_train_input, colorado_train_output, hidden_units);
-
 	% ---------------------------------------
-	% Calculate Net Output
+	% Generate PSHNN Network
 	%
-	Y = W2 * [tansig( W1 * colorado_train_input', B1)' , colorado_train_input]';
+	[W1, B1, W2 ] = pshnn_chen(colorado_train_input, colorado_train_output, hidden_units);
+
+    % ---------------------------------------
+	% Get Output from PSHNN Network
+	%
+    [Yc, Y] = use_pshnn_chen(colorado_train_input, W1, B1, W2 );
 
     end
 end
 
-% ---------------------------------------
-% Assign Outputs to Classes
-%
-Yc = zeros( classes, samples );
-for i=1:samples 
-	max = 1;
-	for j=2:classes 
-		if Y(j,i) > Y(max,i)
-			max = j;
-		end
-	endfor
-	Yc( max, i ) = 1;
-endfor
 
 % ---------------------------------------
 % Generate Confusion Matrix for Training Samples.
@@ -137,30 +108,16 @@ if choice == 1 			% Adaptive BackProp
  	% ---------------------------------------
 	% Calculate Net Output
 	%
-	Y = purelin(W2 * tansig( W1 * colorado_test_input', B1),  B2);
+    [Yc, Y] = use_pshnn_bp(colorado_test_input, W1, B1, W2, B2 );
    
 else if choice == 2 	% Functional Link w/Random Perceptron Enhanced Nodes.
 	% ---------------------------------------
 	% Calculate Net Output
 	%
-	Y = W2 * [tansig( W1 * colorado_test_input', B1)' , colorado_test_input]';
+    [Yc, Y] = use_pshnn_chen(colorado_test_input, W1, B1, W2 );
     
     end
 end
-
-% ---------------------------------------
-% Assign Outputs to Classes
-%
-Yc = zeros( classes, samples );
-for i=1:samples 
-	max = 1;
-	for j=2:classes 
-		if Y(j,i) > Y(max,i)
-			max = j;
-		end
-	endfor
-	Yc( max, i ) = 1;
-endfor
 
 % ---------------------------------------
 % Generate Confusion Matrix for Training Samples.
@@ -199,27 +156,9 @@ if saveit == 1		% Yes
 	end
 end
 
-% E = sum( abs( colorado_train_output' - Yc )/2 );
-
 % --------------------------------
 % History:
-% $Log: pshnn.m,v $
-% Revision 1.5  1997/09/30 00:00:23  jak
-% Moved Chen's Functional Link Net to another file.
-% Also added reults for the testing data set. -jak
+% $Log: colotest.m,v $
+% Revision 1.1  1997/09/30 05:26:04  jak
+% Split up the programs a little more. -jak
 %
-% Revision 1.4  1997/09/29 21:01:58  jak
-% Moved the confusion matrix to a seperate function. -jak
-%
-% Revision 1.3  1997/09/28 04:49:25  jak
-% Broke some backprop things into their own files. -jak
-%
-% Revision 1.2  1997/09/27 18:59:21  jak
-% Fixed the Id - oops. -jak
-%
-% Revision 1.1.1.1  1997/09/27 18:57:14  jak
-% First commit of the colorado data set in matlab. -jak
-%
-%
-
-
