@@ -2,7 +2,7 @@
 % Matlab Script File - colotest.m
 % PSHNN test on the Colorado Data Set
 %
-% $Id: colotest.m,v 1.3 1997/10/07 16:36:44 jak Exp $
+% $Id: colotest.m,v 1.4 1997/10/07 17:33:42 jak Exp $
 %
 % ****************************************
 
@@ -72,7 +72,7 @@ elseif choice == 2      % Functional Link w/Random Perceptron Enhanced Nodes.
     % ---------------------------------------
     % Generate PSHNN Network
     %
-    [W1, B1, W2 ] = pshnn_chen(colorado_train_input, colorado_train_output, hidden_units);
+    [W1, B1, W2 ] = pshnn_ch(colorado_train_input, colorado_train_output, hidden_units);
 
     % ---------------------------------------
     % Get Output from PSHNN Network
@@ -165,6 +165,9 @@ end
 % --------------------------------
 % History:
 % $Log: colotest.m,v $
+% Revision 1.4  1997/10/07 17:33:42  jak
+% ooops - I had en error in colotest.m, its fixed now. - jak
+%
 % Revision 1.3  1997/10/07 16:36:44  jak
 % Names were changed to fit in a DOS filesystem.  -jak
 %
