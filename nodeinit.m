@@ -3,7 +3,7 @@
 % Matlab Function - nodeinit.m
 % Initialize 1st layer of Net
 %
-% $Id: nodeinit.m,v 1.2 1997/10/06 20:46:28 jak Exp $
+% $Id: nodeinit.m,v 1.3 1997/10/08 02:52:10 jak Exp $
 %
 % 
 
@@ -15,9 +15,10 @@ function [W1,B1] = nodeinit(I_samples,O_samples,hidden_units)
     [isamples, channels] = size( I_samples );
     [osamples, classes ] = size( O_samples );
     if isamples == osamples 
-    samples = isamples;
+	samples = isamples;
     else
-    error('%dx%d -> %dx%d : Unequal amounts of input and output data!', isamples, channels, osamples, classes);
+        fprintf( 2, '%dx%d -> %dx%d :', isamples, channels, osamples, classes );
+	error('Unequal amounts of input and output data!');
     end
 
     % ---------------------------------------
@@ -46,6 +47,9 @@ function [W1,B1] = nodeinit(I_samples,O_samples,hidden_units)
 % --------------------------------
 % History:
 % $Log: nodeinit.m,v $
+% Revision 1.3  1997/10/08 02:52:10  jak
+% Additions toward the full pshnn. -jak
+%
 % Revision 1.2  1997/10/06 20:46:28  jak
 % The files are now compatible with LINUX Matlab v 5.1 -jak
 %

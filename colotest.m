@@ -2,7 +2,7 @@
 % Matlab Script File - colotest.m
 % PSHNN test on the Colorado Data Set
 %
-% $Id: colotest.m,v 1.4 1997/10/07 17:33:42 jak Exp $
+% $Id: colotest.m,v 1.5 1997/10/08 02:52:10 jak Exp $
 %
 % ****************************************
 
@@ -14,7 +14,7 @@ load colo_trn.mat;
 % ---------------------------------------
 % Choose Basic Algorithm
 %
-choice = menu('Which Learning Method would you like to use?', '2-Layer Perceptron with Linear Outputs - Adaptive BackPropagation Training', 'Random Perceptron Enhanced Functional Link Network - LMS Training');
+choice = menu('Which Learning Method would you like to use?', 'Adaptive BackPropagation Training', 'LMS Training');
 
 if choice == 1      % Adaptive BackProp
     
@@ -72,7 +72,7 @@ elseif choice == 2      % Functional Link w/Random Perceptron Enhanced Nodes.
     % ---------------------------------------
     % Generate PSHNN Network
     %
-    [W1, B1, W2 ] = pshnn_ch(colorado_train_input, colorado_train_output, hidden_units);
+    [W1, B1, W2 ] = pshnn_ch(colorado_train_input, colorado_train_output, hidden_units, train_samples );
 
     % ---------------------------------------
     % Get Output from PSHNN Network
@@ -165,6 +165,9 @@ end
 % --------------------------------
 % History:
 % $Log: colotest.m,v $
+% Revision 1.5  1997/10/08 02:52:10  jak
+% Additions toward the full pshnn. -jak
+%
 % Revision 1.4  1997/10/07 17:33:42  jak
 % ooops - I had en error in colotest.m, its fixed now. - jak
 %
