@@ -7,7 +7,7 @@
 %      trn_inp.m,  trn_cls.m   - for training data
 %     test_inp.m, test_cls.m   - for testing data
 %
-% $Id: colorado.m,v 1.1 1997/09/27 18:57:14 jak Exp $
+% $Id: colorado.m,v 1.1.1.1 1997/09/27 18:57:14 jak Exp $
 %
 
 
@@ -140,8 +140,8 @@ save -mat-binary colo_pr.mat prob_test_class prob_train_class prob_class;
 % --------------------------------
 % History:
 % $Log: colorado.m,v $
-% Revision 1.1  1997/09/27 18:57:14  jak
-% Initial revision
+% Revision 1.1.1.1  1997/09/27 18:57:14  jak
+% First commit of the colorado data set in matlab. -jak
 %
 %
 

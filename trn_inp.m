@@ -2,7 +2,7 @@
 %
 % Definition of training input samples for colorado data set.
 %
-% $Id: trn_inp.m,v 1.1 1997/09/27 18:57:13 jak Exp $
+% $Id: trn_inp.m,v 1.1.1.1 1997/09/27 18:57:13 jak Exp $
 %
 
 colorado_train_input = [
@@ -1199,7 +1199,7 @@ colorado_train_input = [
 % --------------------------------
 % History:
 % $Log: trn_inp.m,v $
-% Revision 1.1  1997/09/27 18:57:13  jak
-% Initial revision
+% Revision 1.1.1.1  1997/09/27 18:57:13  jak
+% First commit of the colorado data set in matlab. -jak
 %
 %

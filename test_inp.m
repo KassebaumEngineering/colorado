@@ -2,7 +2,7 @@
 %
 % Definition of testing input samples for colorado data set.
 %
-% $Id: test_inp.m,v 1.1 1997/09/27 18:57:15 jak Exp $
+% $Id: test_inp.m,v 1.1.1.1 1997/09/27 18:57:15 jak Exp $
 %
 colorado_test_input = [
    8, 11,127,  0, 26,  0,184;
@@ -841,7 +841,7 @@ colorado_test_input = [
 % --------------------------------
 % History:
 % $Log: test_inp.m,v $
-% Revision 1.1  1997/09/27 18:57:15  jak
-% Initial revision
+% Revision 1.1.1.1  1997/09/27 18:57:15  jak
+% First commit of the colorado data set in matlab. -jak
 %
 %

@@ -3,7 +3,7 @@
 % Script to Show Sizes of input and output data 
 % for verification.
 %
-% $Id: verify.m,v 1.1 1997/09/27 18:57:17 jak Exp $
+% $Id: verify.m,v 1.1.1.1 1997/09/27 18:57:17 jak Exp $
 %
 
 test_samples
@@ -33,7 +33,7 @@ size( colorado_train_class10 )
 % --------------------------------
 % History:
 % $Log: verify.m,v $
-% Revision 1.1  1997/09/27 18:57:17  jak
-% Initial revision
+% Revision 1.1.1.1  1997/09/27 18:57:17  jak
+% First commit of the colorado data set in matlab. -jak
 %
 %
