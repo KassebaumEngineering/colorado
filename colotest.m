@@ -2,7 +2,7 @@
 % Matlab Script File - colotest.m
 % PSHNN test on the Colorado Data Set
 %
-% $Id: colotest.m,v 1.2 1997/10/06 20:46:24 jak Exp $
+% $Id: colotest.m,v 1.3 1997/10/07 16:36:44 jak Exp $
 %
 % ****************************************
 
@@ -52,7 +52,7 @@ if choice == 1      % Adaptive BackProp
     % ---------------------------------------
     % Get Output from PSHNN Network
     %
-    [Yc, Y] = use_pshnn_bp(colorado_train_input, W1, B1, W2, B2 );
+    [Yc, Y] = use_bp(colorado_train_input, W1, B1, W2, B2 );
 
 elseif choice == 2      % Functional Link w/Random Perceptron Enhanced Nodes.
 
@@ -77,7 +77,7 @@ elseif choice == 2      % Functional Link w/Random Perceptron Enhanced Nodes.
     % ---------------------------------------
     % Get Output from PSHNN Network
     %
-    [Yc, Y] = use_pshnn_chen(colorado_train_input, W1, B1, W2 );
+    [Yc, Y] = use_chen(colorado_train_input, W1, B1, W2 );
 
 end
 
@@ -117,13 +117,13 @@ if choice == 1          % Adaptive BackProp
     % ---------------------------------------
     % Calculate Net Output
     %
-    [Yc, Y] = use_pshnn_bp(colorado_test_input, W1, B1, W2, B2 );
+    [Yc, Y] = use_bp(colorado_test_input, W1, B1, W2, B2 );
    
 else if choice == 2     % Functional Link w/Random Perceptron Enhanced Nodes.
     % ---------------------------------------
     % Calculate Net Output
     %
-    [Yc, Y] = use_pshnn_chen(colorado_test_input, W1, B1, W2 );
+    [Yc, Y] = use_chen(colorado_test_input, W1, B1, W2 );
     
     end
 end
@@ -165,6 +165,9 @@ end
 % --------------------------------
 % History:
 % $Log: colotest.m,v $
+% Revision 1.3  1997/10/07 16:36:44  jak
+% Names were changed to fit in a DOS filesystem.  -jak
+%
 % Revision 1.2  1997/10/06 20:46:24  jak
 % The files are now compatible with LINUX Matlab v 5.1 -jak
 %

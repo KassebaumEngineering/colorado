@@ -1,23 +1,23 @@
 % ****************************************
-% Matlab Function - use_pshnn_bp.m
-% Use a PSHNN_BP Trained Function
+% Matlab Function - use_chen.m
+% Use a PSHNN_CHEN Trained Function
 %
-% $Id: use_pshnn_bp.m,v 1.2 1997/10/06 20:46:36 jak Exp $
+% $Id: use_chen.m,v 1.1 1997/10/07 16:36:50 jak Exp $
 %
 % ****************************************
 
-function [Yc, Y] = use_pshnn_bp(I_samples, W1, B1, W2, B2)
+function [Yc, Y] = use_chen(I_samples, W1, B1, W2 )
 
     % ---------------------------------------
     % Network Architecture Definitions
     %
     [samples, channels] = size( I_samples );
-    
+
     % ---------------------------------------
     % Calculate Net Output
     %
-    Y = purelin(W2 * tansig( W1 * I_samples', B1),  B2);
-        
+    Y = W2 * [tansig( W1 * I_samples', B1)' , I_samples]';
+
     [ classes, samples ]  = size( Y );
     % ---------------------------------------
     % Assign Outputs to Classes
@@ -37,10 +37,14 @@ function [Yc, Y] = use_pshnn_bp(I_samples, W1, B1, W2, B2)
 
 % --------------------------------
 % History:
-% $Log: use_pshnn_bp.m,v $
-% Revision 1.2  1997/10/06 20:46:36  jak
+% $Log: use_chen.m,v $
+% Revision 1.1  1997/10/07 16:36:50  jak
+% Names were changed to fit in a DOS filesystem.  -jak
+%
+% Revision 1.2  1997/10/06 20:46:37  jak
 % The files are now compatible with LINUX Matlab v 5.1 -jak
 %
-% Revision 1.1  1997/09/30 05:26:52  jak
+% Revision 1.1  1997/09/30 05:26:54  jak
 % Added functions to calculate the various networks. -jak
+%
 %
