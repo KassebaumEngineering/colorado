@@ -2,46 +2,48 @@
 % Matlab Function - pshnn_bp.m
 % PSHNN Function
 %
-% $Id: pshnn_bp.m,v 1.1 1997/09/30 05:26:08 jak Exp $
+% $Id: pshnn_bp.m,v 1.2 1997/10/06 20:46:29 jak Exp $
 %
 % ****************************************
 
-function [W1, B1, W2, B2] = pshnn_bp(I_samples, O_samples, hidden_units)
+function [W1, B1, W2, B2] = pshnn_bp(I_samples, O_samples, hidden_units, epochs)
 
-	% ---------------------------------------
-	% Network Architecture Definitions
-	%
-	[isamples, channels] = size( I_samples );
-	[osamples, classes ] = size( O_samples );
-	if isamples == osamples 
-		samples = isamples;
-	else
-		error('%dx%d -> %dx%d : Unequal amounts of Training input and output data!',\
-			isamples, channels, osamples, classes);
-	end
-	
-	% ---------------------------------------
-	% Adaptive BackProp
+    % ---------------------------------------
+    % Network Architecture Definitions
     %
-	disp_freq = 10;
-	max_epoch = 50;
-	err_goal = 0.02;
-	lr = 0.01;
-	lr_inc = 1.05;
-	lr_dec = 0.7;
-	err_ratio = 1.04;
-	
-	TP = [disp_freq max_epoch err_goal lr lr_inc lr_dec err_ratio];
-	[W1,B1,W2,B2] = net_init(I_samples, O_samples, hidden_units);
-	[W1,B1,W2,B2,epoch,TR] = backprop(I_samples, O_samples, hidden_units, W1, B1, W2, B2, TP);
+    [isamples, channels] = size( I_samples );
+    [osamples, classes ] = size( O_samples );
+    if isamples == osamples 
+        samples = isamples;
+    else
+        error('%dx%d -> %dx%d : Unequal amounts of Training input and output data!', isamples, channels, osamples, classes);
+    end
+    
+    % ---------------------------------------
+    % Adaptive BackProp
+    %
+    disp_freq = 10;
+    max_epoch = epochs;
+    err_goal = 0.02;
+    lr = 0.01;
+    lr_inc = 1.05;
+    lr_dec = 0.7;
+    err_ratio = 1.04;
+    
+    TP = [disp_freq max_epoch err_goal lr lr_inc lr_dec err_ratio];
+    [W1,B1,W2,B2] = net_init(I_samples, O_samples, hidden_units);
+    [W1,B1,W2,B2,epoch,TR] = backprop(I_samples, O_samples, hidden_units, W1, B1, W2, B2, TP);
 
-endfunction
+%endfunction
 
 % E = sum( abs( O_samples' - Yc )/2 );
 
 % --------------------------------
 % History:
 % $Log: pshnn_bp.m,v $
+% Revision 1.2  1997/10/06 20:46:29  jak
+% The files are now compatible with LINUX Matlab v 5.1 -jak
+%
 % Revision 1.1  1997/09/30 05:26:08  jak
 % Split up the programs a little more. -jak
 %
