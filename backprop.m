@@ -1,8 +1,9 @@
+
 % 
 % Matlab Function - backprop.m
 % Perform 2-layer Net Training
 %
-% $Id: backprop.m,v 1.1 1997/09/28 04:49:21 jak Exp $
+% $Id: backprop.m,v 1.2 1997/09/30 00:00:19 jak Exp $
 %
 % 
 
@@ -36,6 +37,10 @@ endfunction
 % --------------------------------
 % History:
 % $Log: backprop.m,v $
+% Revision 1.2  1997/09/30 00:00:19  jak
+% Moved Chen's Functional Link Net to another file.
+% Also added reults for the testing data set. -jak
+%
 % Revision 1.1  1997/09/28 04:49:21  jak
 % Broke some backprop things into their own files. -jak
 %
